@@ -1,2 +1,7 @@
-# unzip_by_inflate
- Sample to unzip with inflate
+# RawInflate
+
+Sample to unzip with inflate.
+And unity plugin.
+
+Inflate is missing in Windows.
+
