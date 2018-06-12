@@ -8,14 +8,14 @@ set CMAKE="%InstallDir%\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\c
 set BUILD_DIR="build_vs2017_x64"
 if not exist %BUILD_DIR% mkdir %BUILD_DIR%
 pushd %BUILD_DIR%
-%CMAKE% -G "Visual Studio 15 2017 Win64" ..
-%MSBUILD% zlib.sln /p:Configuration=Release
+%CMAKE% -DSKIP_INSTALL_ALL=1 -G "Visual Studio 15 2017 Win64" ..
+%MSBUILD% INSTALL.vcxproj /p:Configuration=Release
 popd
 
 set BUILD_DIR="build_vs2017_x32"
 if not exist %BUILD_DIR% mkdir %BUILD_DIR%
 pushd %BUILD_DIR%
-%CMAKE% -G "Visual Studio 15 2017" ..
-%MSBUILD% zlib.sln /p:Configuration=Release
+%CMAKE% -DSKIP_INSTALL_ALL=1 -G "Visual Studio 15 2017" ..
+%MSBUILD% INSTALL.vcxproj /p:Configuration=Release
 popd
 
