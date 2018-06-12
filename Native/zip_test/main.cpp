@@ -67,10 +67,10 @@ int main(int argc, char **argv)
 	auto srcSize = (unsigned long)header.CompressedSize;
 	auto dstSize = (unsigned long)dst.size();
 	auto result = uncompress((unsigned char*)dst.data(), &dstSize,
-		(unsigned char*)(src.data()+pos), srcSize);
+		(unsigned char*)(src.data() + pos), srcSize);
 #else
-	auto result = RawInflate(dst.data(), dst.size(),
-		src.data() + pos, header.CompressedSize);
+	auto result = RawInflate(dst.data(), 0, dst.size(),
+		src.data(), pos, header.CompressedSize);
 #endif
 
 	return 0;

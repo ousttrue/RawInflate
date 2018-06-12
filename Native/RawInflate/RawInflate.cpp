@@ -1,18 +1,17 @@
 #include "RawInflate.h"
 #include <zlib.h>
 #include <string.h>
-//#include <stdio.h>
 #include <assert.h>
 
 
-RAWINFLATE_EXPORT int RawInflate(uint8_t* dst, int dst_size, 
-        const uint8_t* src, int src_size)
+RAWINFLATE_EXPORT int RawInflate(uint8_t* dst, int dst_offset, int dst_size,
+	const uint8_t* src, int src_offset, int src_size)
 {
 	z_stream  stream;
 	memset(&stream, 0, sizeof(z_stream));
-	stream.next_in = (Bytef*)src;
+	stream.next_in = (Bytef*)(src + src_offset);
 	stream.avail_in = src_size;
-	stream.next_out = dst;
+	stream.next_out = dst + dst_offset;
 	stream.avail_out = dst_size;
 
 	// https://wiz-code.net/blog/2009/09/zlibdll-zlibnet-deflatestream.html
@@ -29,4 +28,3 @@ RAWINFLATE_EXPORT int RawInflate(uint8_t* dst, int dst_size,
 
 	return  stream.total_out;  // uncompressed_size
 }
-
